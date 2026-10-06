@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dozz shop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- PAGE ACCUEIL -->
+  <div id="page-accueil" class="page active">
+    <div class="accueil-bg">
+      <img src="img/accueil.png" alt="dozz shop" class="accueil-img">
+      <div class="accueil-overlay">
+        <h1 class="logo-title">dozz shop</h1>
+        <p class="tagline">Halloween Season • Exclusive Drops</p>
+        <div class="visitor-counter" id="visitor-counter">
+          <span class="visitor-icon">👁</span>
+          <span id="visitor-count">...</span>
+          <span class="visitor-label">visites</span>
+        </div>
+        <div class="dev-team">
+          <p class="dev-team-label">Développé par</p>
+          <div class="dev-cards">
+            <div class="dev-card">
+              <img src="img/ayla-avatar.png" alt="ayla" class="dev-avatar">
+              <div class="dev-info">
+                <span class="dev-name">ayla</span>
+                <span class="dev-tag">sextoxique • Admin</span>
+              </div>
+            </div>
+            <div class="dev-card">
+              <img src="img/ace-avatar.png" alt="AceOfEloan" class="dev-avatar">
+              <div class="dev-info">
+                <span class="dev-name">AceOfEloan</span>
+                <span class="dev-tag">eloan.vfx • Admin</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accueil-buttons">
+          <a href="https://discord.gg/6bv9hurasd" target="_blank" class="btn btn-discord">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            Rejoindre le Discord
+          </a>
+          <button class="btn btn-enter" onclick="showPage('login')">Entrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE LOGIN / REGISTER -->
+  <div id="page-login" class="page">
+    <div class="login-wrapper">
+      <div class="login-visual">
+        <img src="img/login.gif" alt="" class="login-gif">
+        <div class="login-visual-overlay">
+          <h2>dozz shop</h2>
+          <p>Crée ton compte. Rejoins les canaux.</p>
+        </div>
+      </div>
+      <div class="login-form-side">
+        <div class="form-tabs">
+          <button class="tab active" data-tab="login" onclick="switchTab('login')">Connexion</button>
+          <button class="tab" data-tab="register" onclick="switchTab('register')">Créer un compte</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="form-login" class="auth-form active" onsubmit="handleLogin(event)">
+          <div class="input-group">
+            <label>Pseudo</label>
+            <input type="text" id="login-username" placeholder="Ton pseudo" required autocomplete="username">
+          </div>
+          <div class="input-group">
+            <label>Mot de passe</label>
+            <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-primary">Se connecter</button>
+          <p class="form-hint">Admins : <code>ayla</code> · <code>AceOfEloan</code> · <code>admin</code></p>
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form id="form-register" class="auth-form" onsubmit="handleRegister(event)">
+          <div class="input-group">
+            <label>Pseudo</label>
+            <input type="text" id="reg-username" placeholder="Choisis un pseudo" required minlength="3" maxlength="20" autocomplete="username">
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="reg-email" placeholder="ton@email.com" required autocomplete="email">
+          </div>
+          <div class="input-group">
+            <label>Mot de passe</label>
+            <input type="password" id="reg-password" placeholder="Min. 6 caractères" required minlength="6" autocomplete="new-password">
+          </div>
+          <button type="submit" class="btn btn-primary">Créer mon compte</button>
+        </form>
+
+        <div id="auth-error" class="auth-error"></div>
+        <a href="#" class="back-link" onclick="showPage('accueil'); return false;">← Retour à l'accueil</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE APP (Discord-like) -->
+  <div id="page-app" class="page">
+    <div class="app-layout">
+      <!-- SIDEBAR SERVEURS -->
+      <div class="servers-bar" id="servers-bar">
+        <!-- filled by JS -->
+      </div>
+
+      <!-- SIDEBAR CHANNELS -->
+      <div class="channels-panel">
+        <div class="server-header">
+          <h3 id="server-name-display">dozz shop</h3>
+          <span class="server-badge">HALLOWEEN</span>
+        </div>
+        <div class="channels-list" id="channels-list">
+          <!-- filled by JS -->
+        </div>
+        <div class="user-panel" id="user-panel">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="main-area">
+        <div class="channel-header" id="channel-header">
+          <span class="channel-hash">#</span>
+          <span id="current-channel-name">information</span>
+          <div class="channel-desc" id="channel-desc">Annonces officielles — lecture seule</div>
+        </div>
+        <div class="messages-area" id="messages-area">
+          <!-- messages -->
+        </div>
+        <div class="message-input-area" id="message-input-area">
+          <div class="input-row">
+            <button class="attach-btn" onclick="document.getElementById('file-input').click()" title="Joindre un fichier">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            </button>
+            <input type="file" id="file-input" style="display:none" onchange="handleFileUpload(event)">
+            <input type="text" id="message-input" placeholder="Envoyer un message dans #information" autocomplete="off">
+            <button class="send-btn" onclick="sendMessage()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDEBAR (Members / Friends) -->
+      <div class="members-panel">
+        <div class="members-tabs">
+          <button class="m-tab active" data-mtab="members" onclick="switchMembersTab('members')">Membres</button>
+          <button class="m-tab" data-mtab="friends" onclick="switchMembersTab('friends')">Amis</button>
+        </div>
+        <div id="members-list" class="members-list">
+          <!-- filled by JS -->
+        </div>
+        <div id="friends-list" class="members-list" style="display:none">
+          <!-- filled by JS -->
+        </div>
+        <div class="add-friend-box">
+          <input type="text" id="friend-username" placeholder="Ajouter un ami (pseudo)">
+          <button onclick="addFriend()">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PROFILE -->
+  <div id="modal-profile" class="modal">
+    <div class="modal-content profile-modal">
+      <button class="modal-close" onclick="closeModal('modal-profile')">×</button>
+      <div class="profile-banner" id="profile-banner"></div>
+      <div class="profile-avatar-wrap">
+        <img id="profile-avatar" src="" alt="Avatar" class="profile-avatar">
+        <label class="avatar-upload" for="avatar-input">📷</label>
+        <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="changeAvatar(event)">
+      </div>
+      <div class="profile-info">
+        <h2 id="profile-username"></h2>
+        <p id="profile-role" class="profile-role"></p>
+        <div class="profile-bio-edit">
+          <label>Bio</label>
+          <textarea id="profile-bio" rows="3" placeholder="Ta bio..."></textarea>
+        </div>
+        <div class="profile-bg-edit">
+          <label>Bannière (URL image)</label>
+          <input type="text" id="profile-banner-url" placeholder="https://...">
+        </div>
+        <button class="btn btn-primary" onclick="saveProfile()">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CREATE CHANNEL -->
+  <div id="modal-channel" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-channel')">×</button>
+      <h2>Créer un salon</h2>
+      <div class="input-group">
+        <label>Nom du salon</label>
+        <input type="text" id="new-channel-name" placeholder="ex: general, drops, chat..." maxlength="30">
+      </div>
+      <div class="input-group">
+        <label>Type</label>
+        <select id="new-channel-type">
+          <option value="text">Texte</option>
+          <option value="announce">Annonces (lecture seule sauf admin)</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="createChannel()">Créer</button>
+    </div>
+  </div>
+
+  <!-- MODAL CREATE SERVER -->
+  <div id="modal-server" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-server')">×</button>
+      <h2>Créer un serveur</h2>
+      <div class="server-icon-preview-wrap">
+        <img id="new-server-icon-preview" src="" alt="" style="display:none">
+        <label for="new-server-icon" class="server-icon-upload">📷 Photo</label>
+        <input type="file" id="new-server-icon" accept="image/*" style="display:none" onchange="previewServerIcon(event)">
+      </div>
+      <div class="input-group">
+        <label>Nom du serveur</label>
+        <input type="text" id="new-server-name" placeholder="Mon serveur" maxlength="40">
+      </div>
+      <button class="btn btn-primary" onclick="createServer()">Créer le serveur</button>
+    </div>
+  </div>
+
+  <!-- MODAL ROLES -->
+  <div id="modal-roles" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-roles')">×</button>
+      <h2>Rôles du serveur</h2>
+      <div id="roles-list" class="roles-list"></div>
+      <hr class="modal-divider">
+      <h3 class="modal-subtitle">Créer un rôle</h3>
+      <div class="input-group">
+        <label>Nom</label>
+        <input type="text" id="new-role-name" placeholder="ex: VIP, DJ...">
+      </div>
+      <div class="input-group">
+        <label>Couleur</label>
+        <input type="color" id="new-role-color" value="#5865f2">
+      </div>
+      <button class="btn btn-primary" onclick="createRole()">Créer le rôle</button>
+      <hr class="modal-divider">
+      <h3 class="modal-subtitle">Assigner un rôle</h3>
+      <div class="input-group">
+        <label>Pseudo</label>
+        <input type="text" id="assign-role-user" placeholder="pseudo">
+      </div>
+      <div class="input-group">
+        <label>ID rôle (ex: admin, modo, member, vip...)</label>
+        <input type="text" id="assign-role-id" placeholder="modo">
+      </div>
+      <button class="btn btn-primary" onclick="assignRole()">Assigner</button>
+    </div>
+  </div>
+
+  <!-- MODAL INVITE -->
+  <div id="modal-invite" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-invite')">×</button>
+      <h2>Inviter un membre</h2>
+      <div class="input-group">
+        <label>Pseudo</label>
+        <input type="text" id="invite-username" placeholder="pseudo du membre">
+      </div>
+      <button class="btn btn-primary" onclick="inviteMember()">Inviter</button>
+    </div>
+  </div>
+
+  <!-- MODAL SERVER SETTINGS -->
+  <div id="modal-server-settings" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-server-settings')">×</button>
+      <h2>Paramètres serveur</h2>
+      <div class="server-icon-preview-wrap">
+        <img id="settings-server-icon-preview" src="" alt="" style="display:none">
+        <label for="settings-server-icon" class="server-icon-upload">📷 Changer l'icône</label>
+        <input type="file" id="settings-server-icon" accept="image/*" style="display:none" onchange="previewSettingsIcon(event)">
+      </div>
+      <div class="input-group">
+        <label>Nom du serveur</label>
+        <input type="text" id="settings-server-name" maxlength="40">
+      </div>
+      <button class="btn btn-primary" onclick="saveServerSettings()">Sauvegarder</button>
+      <hr class="modal-divider">
+      <h3 class="modal-subtitle">Membres</h3>
+      <div id="settings-members-list" class="settings-members-list"></div>
+    </div>
+  </div>
+
+  <!-- MODAL VIEW USER PROFILE -->
+  <div id="modal-view-profile" class="modal">
+    <div class="modal-content profile-modal">
+      <button class="modal-close" onclick="closeModal('modal-view-profile')">×</button>
+      <div class="profile-banner" id="view-profile-banner"></div>
+      <div class="profile-avatar-wrap">
+        <img id="view-profile-avatar" src="" alt="Avatar" class="profile-avatar">
+      </div>
+      <div class="profile-info">
+        <h2 id="view-profile-username"></h2>
+        <p id="view-profile-role" class="profile-role"></p>
+        <p id="view-profile-bio" class="view-bio"></p>
+        <div class="profile-actions">
+          <button class="btn btn-primary" id="view-profile-dm-btn" onclick="openDMFromProfile()">Message privé</button>
+          <button class="btn btn-secondary" id="view-profile-friend-btn" onclick="addFriendFromProfile()">Ajouter en ami</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DM OVERLAY -->
+  <div id="dm-overlay" class="dm-overlay">
+    <div class="dm-panel">
+      <div class="dm-header">
+        <img id="dm-partner-avatar" src="" alt="" class="dm-header-av">
+        <div>
+          <div id="dm-partner-name" class="dm-header-name">...</div>
+          <div class="dm-header-sub">Message privé · visible uniquement par vous deux</div>
+        </div>
+        <button class="dm-close" onclick="closeDM()">×</button>
+      </div>
+      <div id="dm-messages" class="dm-messages"></div>
+      <div class="dm-input-row">
+        <input type="text" id="dm-input" placeholder="Écrire un message privé..." autocomplete="off"
+               onkeydown="if(event.key==='Enter')sendDM()">
+        <button class="send-btn" onclick="sendDM()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALL OVERLAY -->
+  <div id="call-overlay" class="call-overlay">
+    <div class="call-box">
+      <div class="call-pulse"></div>
+      <div class="call-icon">📞</div>
+      <h2 id="call-server-name">dozz shop</h2>
+      <p class="call-status">Appel en cours</p>
+      <div id="call-timer" class="call-timer">00:00</div>
+      <div class="call-actions">
+        <button class="call-btn mute" onclick="this.classList.toggle('active')" title="Muet">🔇</button>
+        <button class="call-btn hangup" onclick="endCall()" title="Raccrocher">📵</button>
+        <button class="call-btn deafen" onclick="this.classList.toggle('active')" title="Sourdine">🎧</button>
+      </div>
+      <p class="call-note">Simulation d'appel vocal — micro non connecté (démo locale)</p>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
